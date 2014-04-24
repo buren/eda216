@@ -95,7 +95,7 @@ class Database {
 	private function executeUpdate($query, $param = null) {
 		try {
 			$stmt = $this->conn->prepare($query);
-			$stmt->execute($param);
+			$result = $stmt->execute($param);
 			} catch (PDOException $e) {
 			$error = "*** Internal error: " . $e->getMessage() . "<p>" . $query;
 			die($error);
@@ -153,12 +153,16 @@ class Database {
 		$reservationSQL = "INSERT INTO reservations (user_id, movie_performance_id) VALUES (?, ?)";
 		$affectedRows = $this->executeUpdate($reservationSQL, array($uId, $moviePerformanceId));
 
+		var_dump($affectedRows);
+
 		if ($this->getAvailableSeats($moviePerformanceId) < 0) {
 			$this->conn->rollBack();
-			return false;
+			return 0;
 		} else {
 			$this->conn->commit();
-			return true;
+			$reservationSQL = "SELECT id FROM reservations ORDER BY id DESC";
+			$resId = $this->executeQuery($reservationSQL);
+			return $resId;
 		}
 	}
 

@@ -17,8 +17,8 @@
   <a href="booking1.php">New booking</a>
   <p>
     <?php
-      if ($reservationStatus == true) {
-        print "One ticket booked.";
+      if ($reservationStatus[0]["id"] > 0) {
+        print "One ticket booked: {$reservationStatus[0]["id"]}";
       } else {
         print "Sorry all tickets are booked.";
       }

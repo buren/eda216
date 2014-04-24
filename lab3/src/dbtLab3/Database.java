@@ -181,7 +181,6 @@ public class Database {
             preparedStatement.setInt(2, CurrentPerformance.instance().getPerformanceId());
             preparedStatement.executeUpdate();
 
-            // if free seats is less than 0 ? rollback : commit
             this.setCurrentPerformance(currentPerformance.getMovieName(), currentPerformance.getDate());
 
             if (currentPerformance.getFreeSeats() < 0) {

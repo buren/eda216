@@ -37,7 +37,7 @@ CREATE TABLE `theaters` (
 --   PRIMARY KEY (`id`),
 --   FOREIGN KEY (movie_id) REFERENCES movies(id),
 --   FOREIGN KEY (theater_id) REFERENCES theaters(id)
--- ); -- MUST use (movie_id, show_date) as foreign key (for some freakin stupid reason)
+-- );
 -- ALTER TABLE movie_performances add unique index(movie_id, show_date);
 CREATE TABLE `movie_performances` (
   `movie_id` int(11) NOT NULL,
@@ -136,7 +136,7 @@ INNER JOIN movies ON `movie_performances`.movie_id = `movies`.id;
 INSERT INTO `reservations`
 (`user_id`, `movie_id`, `show_date`)
 VALUES
-(1, 1, '2013-03-03');
+(1, 1, '2014-03-03');
 -- 9
 -- Available seats is not enfored i DB for reservations
 
